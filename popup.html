@@ -47,6 +47,7 @@
       padding: 8px;
       border-radius: 4px;
       border: 1px solid #ddd;
+      border-radius: 10px;
     }
 
     #result {
@@ -99,7 +100,8 @@
   <h2>AI Summarizer</h2>
 
   <div class="options">
-  <select class="summary-type">
+  <select class="summary-type" id="summary-type">
+    <option value="">--select--</option>
     <option value="brief">Brief</option>
     <option value="detailed">Detailed</option>
     <option value="bullet">Bullet Points</option>
