@@ -4,8 +4,6 @@ document.getElementById("summarize").addEventListener("click", () => {
 
   resultDiv.innerHTML = `<div class="loader"></div>`;
 
-  // get the user's api key
-
   chrome.storage.sync.get(["geminiApiKey"], ({ geminiApiKey }) => {
     if (!geminiApiKey) {
       resultDiv.innerHTML = `No API key set. Click the gear icon to add one`;
@@ -100,7 +98,6 @@ document.getElementById("theme-mode").addEventListener("click", () => {
     document.getElementById("title").style.color = "#fff";
   }
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.sync.get(["theme"], ({ theme }) => {
