@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.sync.get(["theme"], ({ theme }) => {
     if (theme === "dark") {
       document.body.classList.add("dark-mode");
+      document.getElementById("title").style.color = "#fff";
     } else {
       document.body.classList.remove("dark-mode");
       document.getElementById("theme-mode").style.fill = "#000";
