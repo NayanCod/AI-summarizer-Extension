@@ -1,118 +1,150 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>AI Summarizer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      min-width: 500px;
-      min-height: 300px;
-      padding: 15px;
-    }
-
-    h2 {
-      color: #333;
-      margin-bottom: 15px;
-    }
-
-    .options {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    button {
-      padding: 8px 15px;
-      background-color: #4285f4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background-color: #3367d6;
-    }
-
-    #copy-btn {
-      background-color: #34a853;
-    }
-
-    #copy-btn:hover {
-      background-color: #2e8b57;
-    }
-
-    #summary-type {
-      padding: 8px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-    }
-
-    #result {
-      margin-top: 15px;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      min-height: 150px;
-      max-height: 400px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      line-height: 1.5;
-    }
-
-    #result ul {
-      padding-left: 20px;
-    }
-
-    #result li {
-      margin-bottom: 10px;
-    }
-
-    .loading {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 150px;
-    }
-
-    .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
+  <head>
+    <title>AI Summarizer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        min-width: 500px;
+        min-height: 300px;
+        padding: 15px;
       }
-      100% {
-        transform: rotate(360deg);
+
+      h2 {
+        color: #333;
+        margin-bottom: 15px;
       }
-    }
-  </style>
-</head>
-<body>
-  <h2>AI Summarizer</h2>
 
-  <div class="options">
-  <select class="summary-type" id="summary-type">
-    <option value="">--select--</option>
-    <option value="brief">Brief</option>
-    <option value="detailed">Detailed</option>
-    <option value="bullet">Bullet Points</option>
-  </select>
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
 
-  <button class="summarize" id="summarize">Summarize</button>
-  <button class="copy-btn" id="copy-btn">Copy</button>
-</div>
+      #theme-mode {
+        cursor: pointer;
+      }
 
-  <pre id="result">Select a type and click summarize...</pre>
+      .options {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
 
-  <script src="popup.js"></script>
-</body>
+      button {
+        padding: 8px 15px;
+        background-color: #4285f4;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: #3367d6;
+      }
+
+      #copy-btn {
+        background-color: #34a853;
+      }
+
+      #copy-btn:hover {
+        background-color: #2e8b57;
+      }
+
+      #summary-type {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+      }
+
+      #result {
+        margin-top: 15px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        min-height: 150px;
+        max-height: 400px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+
+      #result ul {
+        padding-left: 20px;
+      }
+
+      #result li {
+        margin-bottom: 10px;
+      }
+
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+      }
+
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+      }
+
+      .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="">
+    <div class="header">
+      <h2 id="title">AI Summarizer</h2>
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          id="theme-mode"
+          viewBox="0 0 24 24"
+          style="fill: rgb(255, 255, 255)"
+        >
+          <path
+            d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-5.12 2.735c-3.905 3.905-3.905 10.237 0 14.142 3.906 3.906 10.237 3.905 14.143 0a9.946 9.946 0 0 0 2.735-5.119A9.003 9.003 0 0 1 12 11.807z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <div class="options">
+      <select class="summary-type" id="summary-type">
+        <option value="">--select--</option>
+        <option value="brief">Brief</option>
+        <option value="detailed">Detailed</option>
+        <option value="bullet">Bullet Points</option>
+      </select>
+
+      <button class="summarize" id="summarize">Summarize</button>
+      <button class="copy-btn" id="copy-btn">Copy</button>
+    </div>
+
+    <pre id="result">Select a type and click summarize...</pre>
+
+    <script src="popup.js"></script>
+  </body>
 </html>

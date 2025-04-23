@@ -8,4 +8,5 @@ chrome.runtime.onInstalled.addListener(() => {
       chrome.tabs.create({ url: "options.html" });
     }
   });
+  chrome.storage.sync.set({"theme": "dark"});
 });

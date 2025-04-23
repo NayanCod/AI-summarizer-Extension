@@ -85,4 +85,31 @@ document.getElementById("copy-btn").addEventListener("click", () => {
       btn.textContent = old;
     }, 2000);
   });
+});
+
+document.getElementById("theme-mode").addEventListener("click", () => {
+  if(document.body.classList.contains("dark-mode")){
+    document.body.classList.remove("dark-mode");
+    chrome.storage.sync.set({ theme: "light" });
+    document.getElementById("theme-mode").style.fill = "#000";
+    document.getElementById("title").style.color = "#000";
+  }else{
+    document.body.classList.add("dark-mode");
+    chrome.storage.sync.set({ theme: "dark" });
+    document.getElementById("theme-mode").style.fill = "#fff";
+    document.getElementById("title").style.color = "#fff";
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  chrome.storage.sync.get(["theme"], ({ theme }) => {
+    if (theme === "dark") {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+      document.getElementById("theme-mode").style.fill = "#000";
+      document.getElementById("title").style.color = "#000";
+    }
+  });
 })
